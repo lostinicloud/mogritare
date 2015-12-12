@@ -18,6 +18,29 @@ var params = null;
 var _xmlString = '<ul><li>h';
 
 // =======================================================  Implements Interface
+function authenticate (domainConfig) {
+  request.post({
+    uri: domainConfig.loginUrl,
+    headers: domainConfig.headers,
+    body: require('querystring').stringify(domainConfig.credentials)
+  }, function(err, res, body){
+    if(err) {
+      callback.call(null, new Error('Login failed'));
+      return;
+    }
+
+    request('http://yourwebsite.com/info', function(err, res, body) {
+      if(err) {
+        callback.call(null, new Error('Request failed'));
+        return;
+      }
+
+      var $ = cheerio.load(body);
+      var text = $('#element').text();
+    });
+  });
+}
+
 function load_document (config) {
   var def = Q.defer();
   var defaultConfig = {
@@ -88,17 +111,19 @@ function setup_domain () {
 }
 
 function init (domainConfig) {
-  load_document().then(function (html) {
-    var __xmlString = html.html() || _xmlString;
-    var conf = {
-      strategy : 'artoo',
-      content  : __xmlString,
-      selector : 'ul > li',
-      params   : null
-    };
+  authenticate(domainConfig).then(function () {
+    load_document().then(function (html) {
+      var __xmlString = html.html() || _xmlString;
+      var conf = {
+        strategy : 'artoo',
+        content  : __xmlString,
+        selector : 'ul > li',
+        params   : null
+      };
 
-    //console.dir(conf);
-    console.log(scrape_document(conf));
+      //console.dir(conf);
+      console.log(scrape_document(conf));
+    });
   });
 }
 
