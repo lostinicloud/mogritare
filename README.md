@@ -73,5 +73,7 @@ Login https://idaas.ng.bluemix.net/idaas/index.jsp
 
 ## Other stuff
 
+![Mogritare](https://raw.githubusercontent.com/nerdfiles/mogritare/master/gem-dragon.jpg)
+
 Mogritare is a Gem Dragon. She is a competitive rival to Aonstrri her cousin 
 Rattelyr Dragon.
