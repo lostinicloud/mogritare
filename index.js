@@ -16,6 +16,7 @@ var fs = require('fs');
 // ==================================================================  Init data
 var params = null;
 var _xmlString = '<ul><li>h';
+var domainConfigPath = './domains.json';
 
 // =======================================================  Implements Interface
 function load_authenticated_document (domainConfig) {
@@ -106,8 +107,7 @@ function scrape_document (config) {
 
 }
 
-var domainConfigPath = './domains.json';
-
+// =========================================================  Config Environment
 function setup_domain () {
   var def = Q.defer();
   var domainSetup = fs.readFile(domainConfigPath, 'utf-8', function (err, data) {
@@ -117,6 +117,7 @@ function setup_domain () {
   return def.promise;
 }
 
+// =============================================================  Initialization
 function init (domainConfig) {
   var __xmlString;
   var engine;
@@ -147,6 +148,7 @@ setup_domain().then(function (domainConfig) {
   init(domainConfig);
 });
 
+// ==========================================================  Export Interface
 module.exports = {
   crawl_document: load_document
 };
