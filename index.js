@@ -26,6 +26,8 @@ var domainConfigPath = './domains.json';
 // =======================================================  Implements Interface
 function load_authenticated_document (domainConfig, mode) {
   var def = Q.defer();
+  var cookieJar = request.jar();
+
   /*
    *var loginDetails = {
    *  user: "",
@@ -38,7 +40,7 @@ function load_authenticated_document (domainConfig, mode) {
     var formSubmitter = new fScraper.FormSubmitter();
 
     formProvider.updateOptions({
-      formId             : "#loginInformation",
+      formId             : domainConfig.formLogin,
       url                : domainConfig.loginUrl,
       promisifiedRequest : pRequest
     });
@@ -57,6 +59,7 @@ function load_authenticated_document (domainConfig, mode) {
   }
 
   request.post({
+    jar     : cookieJar,
     uri     : domainConfig.loginUrl,
     headers : domainConfig.headers,
     body    : require('querystring').stringify(domainConfig.credentials)
@@ -69,6 +72,7 @@ function load_authenticated_document (domainConfig, mode) {
     }
 
     request.get({
+      jar     : cookieJar,
       url     : domainConfig.landingUrl,
       headers : auth_res.headers
     }, function (err, res, body) {
