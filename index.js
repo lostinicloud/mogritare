@@ -17,6 +17,7 @@ function load_document (config) {
   request(_config.url, function (error, response, html) {
     if (!error && response.statusCode == 200) {
       var $ = cheerio.load(html);
+      console.log(html);
       def.resolve($);
 
       $('span.comhead').each(function(i, element){
