@@ -55,7 +55,7 @@ function scrape_document (config) {
 
 // @password Success2014?
 var domainConfig = {
-  url      : 'http://infofree.com',
+  url      : 'http://www.infofree.com/',
   username : 'brian@waltonhenry.com',
   password : 'success2014'
 };
