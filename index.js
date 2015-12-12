@@ -34,7 +34,7 @@ function load_authenticated_document (domainConfig) {
     request(domainConfig.landingUrl, function (err, res, body) {
       if (err) {
         //callback.call(null, new Error('Request failed'));
-        def.resolve(err)
+        def.resolve(err);
         return;
       }
 
