@@ -1,12 +1,16 @@
 {
-  "loginUrl" : "https://domain.com/login",
+  "loginUrl" : "https://new.infofree.com/login",
   "headers": {
     "content-type": "application/x-www-form-urlencoded"
   },
-  "baseUrl" : "http://domain.com/",
-  "landingUrl": "http://domain.com/?queryFromASubmittedForm",
+  "baseUrl" : "http://www.infofree.com/",
+  "oldlandingUrl": "https://new.infofree.com/secure/results?sourcealias=127&session=ace918d5-a0bb-11e5-a703-22000ab4a5ab&name=All%20Businesses",
+  "landingUrl": "https://new.infofree.com/secure/dashboard?login=true",
+  "followUrl": "https://new.infofree.com/secure/search?sourcealias=127",
+  "formLogin": "#loginInformation",
   "credentials": {
     "username" : "",
-    "password" : ""
+    "loginPassword" : ""
   }
 }
+
