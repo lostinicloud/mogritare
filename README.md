@@ -33,6 +33,28 @@ We load a domain (./domains.json):
       }
     }
 
+## Schema: Conf (TODO)
+
+We load JSON schemas for each Domain Schema:
+
+    {
+      '$$'     : engine,
+      strategy : 'artoo',
+      content  : __xmlString,
+      selector : 'ul > li',
+      params   : null
+    }
+
+### Conf Layout
+
+    $$        engine is going to contain a copy of the engine used specified in 
+              @strategy.
+    strategy  ‘artoo’ or ‘jquery’
+    content   Promise-loaded HTML document that corresponds to a request flow 
+              specified in the Domain Schema.
+    selector  The selector corresponding to HTML document markup captured.
+    params    
+
 ## Bluemix
 
 Install cf:
