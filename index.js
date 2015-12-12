@@ -1,35 +1,56 @@
+/**
+ * @fileOverview
+ * ./index.js
+ * @description
+ *
+ *
+ */
+
+// ===============================================================  Dependencies
 var artoo = require('artoo-js');
 var cheerio = require('cheerio');
 var request = require('request');
 var Q = require('q');
+var fs = require('fs');
 
+// ==================================================================  Init data
 var params = null;
 var _xmlString = '<ul><li>h';
 
+// =======================================================  Implements Interface
 function load_document (config) {
   var def = Q.defer();
   var defaultConfig = {
-    url: null
+    url: 'http://www.infofree.com/'
   }
   var _config = config || defaultConfig;
-  if (!_config.url)
-    return;
-  request(_config.url, function (error, response, html) {
-    if (!error && response.statusCode == 200) {
-      var $ = cheerio.load(html);
-      console.log(html);
-      def.resolve($);
+  if (!_config.url) {
+    console.log('No URL loaded.');
+    def.reject(null);
+  } else {
+    console.log('Loading ' + _config.url);
+    request(_config.url, function (error, response, html) {
+      if (!error && response.statusCode == 200) {
+        var $ = cheerio.load(html);
+        def.resolve($);
 
-      $('span.comhead').each(function(i, element){
-        var a = $(this).prev();
-        console.log(a.text());
-      });
-    }
-  });
+        /*
+         *$('span.comhead').each(function(i, element){
+         *  var a = $(this).prev();
+         *  console.log(a.text());
+         *});
+         */
+      }
+    });
+  }
   return def.promise;
 }
 
+// ===================================================  Implementation Functions
 function scrape_document (config) {
+  /**
+   * @inner
+   */
   var defaultConfig = {
     strategy : 'artoo',
     content  : '',
@@ -55,22 +76,36 @@ function scrape_document (config) {
 
 }
 
-// @password Success2014?
-var domainConfig = {
-  url      : 'http://www.infofree.com/',
-  username : 'brian@waltonhenry.com',
-  password : 'success2014'
+var domainConfigPath = './domains.json';
+
+function setup_domain () {
+  var def = Q.defer();
+  var domainSetup = fs.readFile(domainConfigPath, 'utf-8', function (err, data) {
+    var configData = JSON.parse(data) || null;
+    def.resolve(configData);
+  });
+  return def.promise;
+}
+
+function init (domainConfig) {
+  load_document().then(function (html) {
+    var __xmlString = html.html() || _xmlString;
+    var conf = {
+      strategy : 'artoo',
+      content  : __xmlString,
+      selector : 'ul > li',
+      params   : null
+    };
+
+    //console.dir(conf);
+    console.log(scrape_document(conf));
+  });
+}
+
+setup_domain().then(function (domainConfig) {
+  init(domainConfig);
+});
+
+module.exports = {
+  crawl_document: load_document
 };
-
-load_document(domainConfig).then(function (html) {
-  var __xmlString = html || _xmlString;
-  var conf = {
-    strategy : 'artoo',
-    content  : __xmlString,
-    selector : 'ul > li',
-    params   : null
-  };
-  console.dir(conf);
-
-  console.log(scrape_document(conf));
-})
