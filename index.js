@@ -12,6 +12,9 @@ var cheerio = require('cheerio');
 var request = require('request');
 var Q = require('q');
 var fs = require('fs');
+var http = require('http')
+
+var pool = new http.Agent();
 
 // ==================================================================  Init data
 var params = null;
@@ -25,21 +28,26 @@ function load_authenticated_document (domainConfig) {
     uri     : domainConfig.loginUrl,
     headers : domainConfig.headers,
     body    : require('querystring').stringify(domainConfig.credentials)
-  }, function (err, res, body) {
-    if (err) {
-      //callback.call(null, new Error('Login failed'));
-      def.resolve(err);
+    //form : domainConfig.credentials
+  }, function (auth_err, auth_res, auth_body) {
+    if (auth_err) {
+      callback.call(null, new Error('Login failed'));
+      def.resolve(auth_err);
       return;
     }
 
-    request(domainConfig.landingUrl, function (err, res, body) {
+    request.get({
+      url     : domainConfig.landingUrl,
+      headers : auth_res.headers
+    }, function (err, res, body) {
       if (err) {
-        //callback.call(null, new Error('Request failed'));
+        callback.call(null, new Error('Request failed'));
         def.resolve(err);
         return;
       }
 
       var $ = cheerio.load(body);
+      $.res = res;
       def.resolve($);
     });
   });
@@ -88,7 +96,7 @@ function scrape_document (config) {
   if (_config.engine) {
     _config.engine(_config.pre).each(function (i, element) {
       var a = $(this).prev();
-      console.log(a.text());
+      //console.log(a.text());
     });
   }
 
@@ -125,6 +133,7 @@ function init (domainConfig) {
     load_document().then(function (html) {
       try {
         engine = authenticatedHtml;
+        //console.log(authenticatedHtml.res);
         __xmlString = authenticatedHtml.html();
       } catch (e) {
         engine = html;
