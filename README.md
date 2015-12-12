@@ -67,6 +67,7 @@ Install cf:
     curl -L "https://cli.run.pivotal.io/stable?release=macosx64-binary&source=github" | tar -zx
 
 Review https://github.com/watson-developer-cloud/concept-insights-nodejs
+Login https://idaas.ng.bluemix.net/idaas/index.jsp
 
 [0]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/concept-insights.html
 
