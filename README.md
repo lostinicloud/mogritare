@@ -42,7 +42,8 @@ We load JSON schemas for each Domain Schema:
       strategy : 'artoo',
       content  : __xmlString,
       selector : 'ul > li',
-      params   : null
+      params   : null,
+      pre      : 'span'
     }
 
 ### Conf Layout
@@ -53,7 +54,7 @@ We load JSON schemas for each Domain Schema:
     content   Promise-loaded HTML document that corresponds to a request flow 
               specified in the Domain Schema.
     selector  The selector corresponding to HTML document markup captured.
-    params    
+    params    (tbd)
     pre       runs a “pre-selection” with the engine before the selector is 
               selected, were a syntax is to be developed to relate pre and 
               normal selections such that they might be grouped, intersected, 
@@ -68,3 +69,8 @@ Install cf:
 Review https://github.com/watson-developer-cloud/concept-insights-nodejs
 
 [0]: http://www.ibm.com/smarterplanet/us/en/ibmwatson/developercloud/concept-insights.html
+
+## Other stuff
+
+Mogritare is a Gem Dragon. She is a competitive rival to Aonstrri her cousin 
+Rattelyr Dragon.
