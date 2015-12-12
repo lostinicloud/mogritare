@@ -1,13 +1,13 @@
 {
   "name": "mogritare",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "Interfaces for web scrapers that hierarchically collect data through selector-based event emitters.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "nerdfiles",
+  "license": "WTFPL",
   "dependencies": {
     "artoo-js": "^0.3.2",
     "cheerio": "^0.19.0",
