@@ -4,6 +4,7 @@
     "content-type": "application/x-www-form-urlencoded"
   },
   "baseUrl" : "http://domain.com/",
+  "landingUrl": "http://domain.com/?queryFromASubmittedForm",
   "credentials": {
     "username" : "",
     "password" : ""
