@@ -53,9 +53,13 @@ function scrape_document (config) {
 
 }
 
+// @password Success2014?
 var domainConfig = {
-  url: 'https://news.ycombinator.com'
+  url      : 'http://infofree.com',
+  username : 'brian@waltonhenry.com',
+  password : 'success2014'
 };
+
 load_document(domainConfig).then(function (html) {
   var __xmlString = html || _xmlString;
   var conf = {
