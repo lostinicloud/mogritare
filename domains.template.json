@@ -1,0 +1,11 @@
+{
+  "loginUrl" : "https://domain.com/login",
+  "headers": {
+    "content-type": "application/x-www-form-urlencoded"
+  },
+  "baseUrl" : "http://domain.com/",
+  "credentials": {
+    "username" : "",
+    "password" : ""
+  }
+}
