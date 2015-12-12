@@ -11,6 +11,7 @@
   "dependencies": {
     "artoo-js": "^0.3.2",
     "cheerio": "^0.19.0",
+    "form-scraper": "0.0.4",
     "http": "0.0.0",
     "q": "^1.4.1",
     "querystring": "^0.2.0",

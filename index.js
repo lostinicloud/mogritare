@@ -13,6 +13,8 @@ var request = require('request');
 var Q = require('q');
 var fs = require('fs');
 var http = require('http')
+var pRequest = require("promisified-request").create();
+var fScraper = require("form-scraper");
 
 var pool = new http.Agent();
 
@@ -22,8 +24,38 @@ var _xmlString = '<ul><li>h';
 var domainConfigPath = './domains.json';
 
 // =======================================================  Implements Interface
-function load_authenticated_document (domainConfig) {
+function load_authenticated_document (domainConfig, mode) {
   var def = Q.defer();
+  /*
+   *var loginDetails = {
+   *  user: "",
+   *  password: ""
+   *};
+   */
+  if (mode && mode === 'form-scraper') {
+    var loginDetails = domainConfig.credentials;
+    var formProvider = new fScraper.ScrapingFormProvider();
+    var formSubmitter = new fScraper.FormSubmitter();
+
+    formProvider.updateOptions({
+      formId             : "#loginInformation",
+      url                : domainConfig.loginUrl,
+      promisifiedRequest : pRequest
+    });
+
+    formSubmitter
+      .updateOptions({
+        formProvider       : formProvider,
+        promisifiedRequest : pRequest
+      })
+      .submitForm(loginDetails)
+        .then(function(response) {
+            def.resolve(response.body);
+        });
+
+    return def.promise;
+  }
+
   request.post({
     uri     : domainConfig.loginUrl,
     headers : domainConfig.headers,
@@ -51,6 +83,7 @@ function load_authenticated_document (domainConfig) {
       def.resolve($);
     });
   });
+
   return def.promise;
 }
 
@@ -129,7 +162,7 @@ function setup_domain () {
 function init (domainConfig) {
   var __xmlString;
   var engine;
-  load_authenticated_document(domainConfig).then(function (authenticatedHtml) {
+  load_authenticated_document(domainConfig, null).then(function (authenticatedHtml) {
     load_document().then(function (html) {
       try {
         engine = authenticatedHtml;
