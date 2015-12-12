@@ -24,16 +24,16 @@ function load_authenticated_document (domainConfig) {
     uri     : domainConfig.loginUrl,
     headers : domainConfig.headers,
     body    : require('querystring').stringify(domainConfig.credentials)
-  }, function(err, res, body){
+  }, function (err, res, body) {
     if (err) {
-      callback.call(null, new Error('Login failed'));
+      //callback.call(null, new Error('Login failed'));
       def.resolve(err);
       return;
     }
 
     request(domainConfig.landingUrl, function (err, res, body) {
       if (err) {
-        callback.call(null, new Error('Request failed'));
+        //callback.call(null, new Error('Request failed'));
         def.resolve(err)
         return;
       }
@@ -85,7 +85,7 @@ function scrape_document (config) {
   var $ = null;
 
   if (_config.engine) {
-    _config.engine(_config.pre).each(function(i, element){
+    _config.engine(_config.pre).each(function (i, element) {
       var a = $(this).prev();
       console.log(a.text());
     });
