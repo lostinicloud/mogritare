@@ -40,6 +40,7 @@ function scrape_document (config) {
   var $ = null;
 
   if (_config.strategy !== 'artoo') {
+    // @strategy 'jquery'
     artoo.bootstrap(cheerio);
     $ = cheerio.load(_config.content);
     data = $(_config.selector).scrape(_config.params);
