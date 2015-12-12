@@ -54,6 +54,10 @@ We load JSON schemas for each Domain Schema:
               specified in the Domain Schema.
     selector  The selector corresponding to HTML document markup captured.
     params    
+    pre       runs a “pre-selection” with the engine before the selector is 
+              selected, were a syntax is to be developed to relate pre and 
+              normal selections such that they might be grouped, intersected, 
+              etc. in the retrieval-extraction process output
 
 ## Bluemix
 
