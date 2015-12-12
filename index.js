@@ -18,27 +18,31 @@ var params = null;
 var _xmlString = '<ul><li>h';
 
 // =======================================================  Implements Interface
-function authenticate (domainConfig) {
+function load_authenticated_document (domainConfig) {
+  var def = Q.defer();
   request.post({
-    uri: domainConfig.loginUrl,
-    headers: domainConfig.headers,
-    body: require('querystring').stringify(domainConfig.credentials)
+    uri     : domainConfig.loginUrl,
+    headers : domainConfig.headers,
+    body    : require('querystring').stringify(domainConfig.credentials)
   }, function(err, res, body){
-    if(err) {
+    if (err) {
       callback.call(null, new Error('Login failed'));
+      def.resolve(err);
       return;
     }
 
-    request('http://yourwebsite.com/info', function(err, res, body) {
-      if(err) {
+    request(domainConfig.landingUrl, function (err, res, body) {
+      if (err) {
         callback.call(null, new Error('Request failed'));
+        def.resolve(err)
         return;
       }
 
       var $ = cheerio.load(body);
-      var text = $('#element').text();
+      def.resolve($);
     });
   });
+  return def.promise;
 }
 
 function load_document (config) {
@@ -48,21 +52,15 @@ function load_document (config) {
   }
   var _config = config || defaultConfig;
   if (!_config.url) {
-    console.log('No URL loaded.');
-    def.reject(null);
+    var errorMsg = 'No URL loaded.';
+    console.log(errorMsg);
+    def.resolve(new Error(errorMsg));
   } else {
     console.log('Loading ' + _config.url);
     request(_config.url, function (error, response, html) {
       if (!error && response.statusCode == 200) {
         var $ = cheerio.load(html);
         def.resolve($);
-
-        /*
-         *$('span.comhead').each(function(i, element){
-         *  var a = $(this).prev();
-         *  console.log(a.text());
-         *});
-         */
       }
     });
   }
@@ -75,6 +73,8 @@ function scrape_document (config) {
    * @inner
    */
   var defaultConfig = {
+    engine   : undefined,
+    pre      : 'span',
     strategy : 'artoo',
     content  : '',
     selector : '',
@@ -83,6 +83,13 @@ function scrape_document (config) {
   var _config = config || defaultConfig;
   var data = null;
   var $ = null;
+
+  if (_config.engine) {
+    _config.engine(_config.pre).each(function(i, element){
+      var a = $(this).prev();
+      console.log(a.text());
+    });
+  }
 
   if (_config.strategy !== 'artoo') {
     // @strategy 'jquery'
@@ -111,17 +118,26 @@ function setup_domain () {
 }
 
 function init (domainConfig) {
-  authenticate(domainConfig).then(function () {
+  var __xmlString;
+  var engine;
+  load_authenticated_document(domainConfig).then(function (authenticatedHtml) {
     load_document().then(function (html) {
-      var __xmlString = html.html() || _xmlString;
+      try {
+        engine = authenticatedHtml;
+        __xmlString = authenticatedHtml.html();
+      } catch (e) {
+        engine = html;
+        __xmlString = html.html() || _xmlString;
+      }
+
       var conf = {
+        '$$'     : engine,
         strategy : 'artoo',
         content  : __xmlString,
         selector : 'ul > li',
         params   : null
       };
 
-      //console.dir(conf);
       console.log(scrape_document(conf));
     });
   });
