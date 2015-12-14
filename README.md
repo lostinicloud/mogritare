@@ -22,16 +22,26 @@ by event emitters for conceptually spaced extraction.
 We load a domain (./domains.json):
 
     {
-      "loginUrl" : "https://domain.com/login",
+      "loginUrl" : "https://new.infofree.com/login",
       "headers": {
         "content-type": "application/x-www-form-urlencoded"
       },
-      "baseUrl" : "http://domain.com/",
-      "credentials": {
-        "username" : "",
-        "password" : ""
+      "baseUrl"     : "http://www.infofree.com/",
+      "queryUrl"    : "https://new.infofree.com/secure/results?sourcealias=127&session=e29fdfda-a285-11e5-a703-22000ab4a5ab&name=All%20Businesses",
+      "homeUrl"     : "https://new.infofree.com/secure/dashboard?login=true",
+      "landingUrl"  : "https://new.infofree.com/secure/account",
+      "followUrl"   : "https://new.infofree.com/secure/search?sourcealias=127",
+      "formLogin"   : "#loginInformation",
+      "credentials" : {
+        "username"      : "",
+        "loginPassword" : ""
       }
     }
+
+`queryUrl` must be called from a headless browser instance capture as a cookie, 
+and then stored in appropriate cookie jar, because a session ID corresponds to 
+a given state represented in cookies or on the page itself, but not as @username 
+and @loginPassword within the URL space.
 
 ## Schema: Conf (TODO)
 
