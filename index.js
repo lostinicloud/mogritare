@@ -22,11 +22,12 @@ var pool = new http.Agent();
 var params = null;
 var _xmlString = '<ul><li>h';
 var domainConfigPath = './domains.json';
+var cookieJar;
 
 // =======================================================  Implements Interface
 function load_authenticated_document (domainConfig, mode) {
   var def = Q.defer();
-  var cookieJar = request.jar();
+  cookieJar = request.jar();
 
   /*
    *var loginDetails = {
@@ -164,6 +165,7 @@ function setup_domain () {
 
 // =============================================================  Initialization
 function init (domainConfig) {
+  var def = Q.defer();
   var __xmlString;
   var engine;
   load_authenticated_document(domainConfig, null).then(function (authenticatedHtml) {
@@ -186,12 +188,82 @@ function init (domainConfig) {
       };
 
       console.log(scrape_document(conf));
+      def.resolve(scrape_document(conf));
     });
+  });
+
+  return def.promise;
+}
+
+// ===================================================================== Driver
+function Spook () {
+  var Spooky;
+  try {
+    Spooky = require('spooky');
+  } catch (e) {
+    Spooky = require('../lib/spooky');
+  }
+
+  // @node CasperJS depends on PhantomJS, and Spooky drives CasperJS in Node.js.
+  // We are assuming that requests objects for .jar() from request lib can be
+  // shared between phantom.cookies and request itself.
+
+  //var cookieData = rs.read(cookieFile);
+  //phantom.cookies = JSON.parse(cookieData);
+  phantom.cookies = cookieJar;
+
+  var spooky = new Spooky({
+    child: {
+      transport : 'http'
+    },
+    casper: {
+      logLevel : 'debug',
+      verbose  : true
+    }
+  }, function (err) {
+    if (err) {
+      e = new Error('Failed to initialize SpookyJS');
+      e.details = err;
+      throw e;
+    }
+
+    spooky.start(domainConfig.landingUrl);
+    spooky.then(function () {
+      this.emit('hello', 'Hello, from ' + this.evaluate(function () {
+        return document.title;
+      }));
+    });
+    spooky.run();
+  });
+
+  spooky.on('error', function (e, stack) {
+    console.error(e);
+
+    if (stack) {
+      console.log(stack);
+    }
+  });
+
+  spooky.on('console', function (line) {
+    console.log(line);
+  });
+
+  spooky.on('hello', function (greeting) {
+    console.log(greeting);
+  });
+
+  spooky.on('log', function (log) {
+    if (log.space === 'remote') {
+      console.log(log.message.replace(/ \- .*/, ''));
+    }
   });
 }
 
 setup_domain().then(function (domainConfig) {
-  init(domainConfig);
+  init(domainConfig).then(function (capturedPageData) {
+    console.log(capturedPageData);
+    Spook(domainConfig);
+  });
 });
 
 // ==========================================================  Export Interface
