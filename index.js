@@ -15,19 +15,24 @@ var fs = require('fs');
 var http = require('http')
 var pRequest = require("promisified-request").create();
 var fScraper = require("form-scraper");
+//var pool = new http.Agent();
+var Spooky;
+try {
+  Spooky = require('spooky');
+} catch (e) {
+  Spooky = require('../lib/spooky');
+}
 
-var pool = new http.Agent();
 
 // ==================================================================  Init data
 var params = null;
 var _xmlString = '<ul><li>h';
 var domainConfigPath = './domains.json';
-var cookieJar;
 
 // =======================================================  Implements Interface
 function load_authenticated_document (domainConfig, mode) {
   var def = Q.defer();
-  cookieJar = request.jar();
+  var cookieJar = request.jar();
 
   /*
    *var loginDetails = {
@@ -85,6 +90,7 @@ function load_authenticated_document (domainConfig, mode) {
 
       var $ = cheerio.load(body);
       $.res = res;
+      $.cookieJar = cookieJar;
       def.resolve($);
     });
   });
@@ -149,7 +155,10 @@ function scrape_document (config) {
     data = artoo.scrape(_config.selector, _config.params);
   }
 
-  return data;
+  return {
+    config: _config,
+    data: data
+  };
 
 }
 
@@ -187,7 +196,7 @@ function init (domainConfig) {
         params   : null
       };
 
-      console.log(scrape_document(conf));
+      //console.log(scrape_document(conf));
       def.resolve(scrape_document(conf));
     });
   });
@@ -196,13 +205,16 @@ function init (domainConfig) {
 }
 
 // ===================================================================== Driver
-function Spook () {
-  var Spooky;
-  try {
-    Spooky = require('spooky');
-  } catch (e) {
-    Spooky = require('../lib/spooky');
-  }
+function Spook (domainConfig, pageDataConfig) {
+
+  //console.log(pageDataConfig.$$);
+  var c = null;
+  (function () {
+    c = pageDataConfig;
+  })();
+
+  //console.log(pageDataConfig.content);
+  //phantom.pageDataConfig = pageDataConfig;
 
   // @node CasperJS depends on PhantomJS, and Spooky drives CasperJS in Node.js.
   // We are assuming that requests objects for .jar() from request lib can be
@@ -210,7 +222,7 @@ function Spook () {
 
   //var cookieData = rs.read(cookieFile);
   //phantom.cookies = JSON.parse(cookieData);
-  phantom.cookies = cookieJar;
+  //phantom.cookies = cookieJar;
 
   var spooky = new Spooky({
     child: {
@@ -229,7 +241,17 @@ function Spook () {
 
     spooky.start(domainConfig.landingUrl);
     spooky.then(function () {
-      this.emit('hello', 'Hello, from ' + this.evaluate(function () {
+      try {
+        // Write cookies to file and read from file inside of spook.then.
+        var cookies = this.page.cookies;
+        this.page.setCookies(c.cookieJar)
+        //phantom.cookies = phantom.pageDataConfig;
+      } catch (e) {
+        console.log(e);
+      }
+    });
+    spooky.then(function () {
+      this.emit('getTitle', 'Title from ' + this.evaluate(function () {
         return document.title;
       }));
     });
@@ -248,7 +270,7 @@ function Spook () {
     console.log(line);
   });
 
-  spooky.on('hello', function (greeting) {
+  spooky.on('getTitle', function (greeting) {
     console.log(greeting);
   });
 
@@ -261,8 +283,9 @@ function Spook () {
 
 setup_domain().then(function (domainConfig) {
   init(domainConfig).then(function (capturedPageData) {
-    console.log(capturedPageData);
-    Spook(domainConfig);
+    var pageDataConfig = capturedPageData.config;
+    console.dir(pageDataConfig);
+    Spook(domainConfig, pageDataConfig);
   });
 });
 
