@@ -8,6 +8,11 @@ selector-based event emitters.
 We will use Watson’s [Concept Insights][0] to stitch DOM Elements together 
 by event emitters for conceptually spaced extraction.
 
+## Installation
+
+1. `$ npm install`
+2. `$ cd node_modules/spook/ && npm install`
+
 ## Read-only scrape
 
 1. $ node index.js
