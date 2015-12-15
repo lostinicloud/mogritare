@@ -8,6 +8,7 @@
   "landingUrl": "https://new.infofree.com/secure/dashboard?login=true",
   "followUrl": "https://new.infofree.com/secure/search?sourcealias=127",
   "formLogin": "#loginInformation",
+  "cookiesFile": "./domains.cookies",
   "credentials": {
     "username" : "",
     "loginPassword" : ""

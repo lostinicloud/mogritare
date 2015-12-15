@@ -33,6 +33,7 @@ var domainConfigPath = './domains.json';
 function load_authenticated_document (domainConfig, mode) {
   var def = Q.defer();
   // @note Try https://gist.github.com/clochix/5967978 to save cookieJar to file before using with CasperJS.
+  // @idea Try writing to ./domains.cookies.
   var cookieJar = request.jar();
 
   /*
@@ -227,7 +228,8 @@ function Spook (domainConfig, pageDataConfig) {
 
   var spooky = new Spooky({
     child: {
-      transport : 'http'
+      transport      : 'http',
+      'cookies-file' : domainConfig.cookiesFile
     },
     casper: {
       logLevel : 'debug',
