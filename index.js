@@ -32,6 +32,7 @@ var domainConfigPath = './domains.json';
 // =======================================================  Implements Interface
 function load_authenticated_document (domainConfig, mode) {
   var def = Q.defer();
+  // @note Try https://gist.github.com/clochix/5967978 to save cookieJar to file before using with CasperJS.
   var cookieJar = request.jar();
 
   /*
@@ -243,6 +244,7 @@ function Spook (domainConfig, pageDataConfig) {
     spooky.then(function () {
       try {
         // Write cookies to file and read from file inside of spook.then.
+        // @review https://gist.github.com/clochix/5967978
         var cookies = this.page.cookies;
         this.page.setCookies(c.cookieJar)
         //phantom.cookies = phantom.pageDataConfig;
