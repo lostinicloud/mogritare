@@ -15,6 +15,7 @@ var fs = require('fs');
 var http = require('http')
 var pRequest = require("promisified-request").create();
 var fScraper = require("form-scraper");
+var casperCookies = require('./casperCookies');
 //var pool = new http.Agent();
 var Spooky;
 try {
@@ -79,6 +80,11 @@ function load_authenticated_document (domainConfig, mode) {
       return;
     }
 
+    casperCookies.saveCookies(domainConfig.cookiesFile, cookieJar).then(function (d) {
+      console.log(d);
+      console.log('Cookies saved!');
+    });
+
     request.get({
       jar     : cookieJar,
       url     : domainConfig.landingUrl,
@@ -92,6 +98,7 @@ function load_authenticated_document (domainConfig, mode) {
 
       var $ = cheerio.load(body);
       $.res = res;
+
       $.cookieJar = cookieJar;
       def.resolve($);
     });
@@ -208,13 +215,7 @@ function init (domainConfig) {
 
 // ===================================================================== Driver
 function Spook (domainConfig, pageDataConfig) {
-
   //console.log(pageDataConfig.$$);
-  var c = null;
-  (function () {
-    c = pageDataConfig;
-  })();
-
   //console.log(pageDataConfig.content);
   //phantom.pageDataConfig = pageDataConfig;
 
@@ -243,16 +244,14 @@ function Spook (domainConfig, pageDataConfig) {
     }
 
     spooky.start(domainConfig.landingUrl);
-    spooky.then(function () {
-      try {
-        // Write cookies to file and read from file inside of spook.then.
-        // @review https://gist.github.com/clochix/5967978
-        var cookies = this.page.cookies;
-        this.page.setCookies(c.cookieJar)
-        //phantom.cookies = phantom.pageDataConfig;
-      } catch (e) {
-        console.log(e);
-      }
+    casperCookies.loadCookies(domainConfig.cookiesFile).then(function (cookieConstruct) {
+      spooky.then(function () {
+        try {
+          this.page.setCookies(cookieConstruct);
+        } catch (e) {
+          console.log(e);
+        }
+      });
     });
     spooky.then(function () {
       this.emit('getTitle', 'Title from ' + this.evaluate(function () {
