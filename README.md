@@ -37,6 +37,7 @@ We load a domain (./domains.json):
       "landingUrl"  : "https://new.infofree.com/secure/account",
       "followUrl"   : "https://new.infofree.com/secure/search?sourcealias=127",
       "formLogin"   : "#loginInformation",
+      "cookiesFile" : "domains.cookies",
       "credentials" : {
         "username"      : "",
         "loginPassword" : ""
