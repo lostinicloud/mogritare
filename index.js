@@ -184,9 +184,15 @@ function scrape_document (config) {
     $ = cheerio.load(_config.content);
     //data = $(_config.selector).scrape(_config.params);
     data = $(_config.selector);
-    //console.log(data);
     data.each(function (i, element) {
-      r.push($(element).html());
+      var href = $(element).find('a').attr('href');
+      var _orientation = $(element).find('dt').attr('class');
+      var orientation = _orientation.split(' ');
+      var auctionItem = {
+        link: href,
+        orientation: orientation[1]
+      };
+      r.push(auctionItem);
     });
   } else {
     $ = cheerio.load(_config.content);
@@ -326,7 +332,7 @@ setup_domain().then(function (domainConfig) {
       list: capturedPageData.scrape
     };
     jsonfile.writeFile(outputFile, outputList, {spaces: 2}, function (err) {
-      //console.error(err);
+      console.error(err);
     });
     //var pageDataConfig = capturedPageData.config;
     //Spook(domainConfig, pageDataConfig);
