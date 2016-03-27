@@ -1,5 +1,5 @@
 {
-  "outputName": "webstersauction.json",
+  "outputName": "new-furniture-tools-equipment-jewelry-coins-auction-march-13th.json",
   "loginUrl" : "https://new.infofree.com/wp-login.php",
   "headers": {
     "content-type": "application/x-www-form-urlencoded"
