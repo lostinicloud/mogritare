@@ -14,6 +14,7 @@
     "cookiejar": "^2.0.6",
     "form-scraper": "0.0.4",
     "http": "0.0.0",
+    "jsonfile": "^2.2.3",
     "lodash": "^3.10.1",
     "q": "^1.4.1",
     "querystring": "^0.2.0",

@@ -16,6 +16,7 @@ var http = require('http')
 var pRequest = require("promisified-request").create();
 var fScraper = require("form-scraper");
 var casperCookies = require('./casperCookies');
+var jsonfile = require('jsonfile');
 //var pool = new http.Agent();
 var Spooky;
 try {
@@ -28,7 +29,8 @@ try {
 // ==================================================================  Init data
 var params = null;
 var _xmlString = '<ul><li>h';
-var domainConfigPath = './domains.json';
+//var domainConfigPath = './domains.json';
+var domainConfigPath = './domains.webstersauction.com';
 
 // =======================================================  Implements Interface
 function load_authenticated_document (domainConfig, mode) {
@@ -65,6 +67,28 @@ function load_authenticated_document (domainConfig, mode) {
         });
 
     return def.promise;
+  }
+
+  if (domainConfig.test) {
+
+    request.get({
+      url     : domainConfig.landingUrl
+    }, function (err, res, body) {
+      if (err) {
+        callback.call(null, new Error('Request failed'));
+        def.resolve(err);
+        return;
+      }
+
+      var $ = cheerio.load(body);
+      $.res = res;
+
+      $.cookieJar = cookieJar;
+      def.resolve($);
+    });
+
+    return def.promise;
+
   }
 
   request.post({
@@ -113,13 +137,13 @@ function load_document (config) {
     url: 'http://www.infofree.com/'
   }
   var _config = config || defaultConfig;
-  if (!_config.url) {
+  if (!_config.landingUrl) {
     var errorMsg = 'No URL loaded.';
     console.log(errorMsg);
     def.resolve(new Error(errorMsg));
   } else {
-    console.log('Loading ' + _config.url);
-    request(_config.url, function (error, response, html) {
+    console.log('Loading ' + _config.landingUrl);
+    request(_config.landingUrl, function (error, response, html) {
       if (!error && response.statusCode == 200) {
         var $ = cheerio.load(html);
         def.resolve($);
@@ -145,6 +169,7 @@ function scrape_document (config) {
   var _config = config || defaultConfig;
   var data = null;
   var $ = null;
+  var r = [];
 
   if (_config.engine) {
     _config.engine(_config.pre).each(function (i, element) {
@@ -153,11 +178,16 @@ function scrape_document (config) {
     });
   }
 
-  if (_config.strategy !== 'artoo') {
+  if (_config.strategy === 'cheerio') {
     // @strategy 'jquery'
     artoo.bootstrap(cheerio);
     $ = cheerio.load(_config.content);
-    data = $(_config.selector).scrape(_config.params);
+    //data = $(_config.selector).scrape(_config.params);
+    data = $(_config.selector);
+    //console.log(data);
+    data.each(function (i, element) {
+      r.push($(element).html());
+    });
   } else {
     $ = cheerio.load(_config.content);
     artoo.setContext($);
@@ -166,7 +196,8 @@ function scrape_document (config) {
 
   return {
     config: _config,
-    data: data
+    data: data,
+    scrape: r
   };
 
 }
@@ -186,8 +217,9 @@ function init (domainConfig) {
   var def = Q.defer();
   var __xmlString;
   var engine;
+
   load_authenticated_document(domainConfig, null).then(function (authenticatedHtml) {
-    load_document().then(function (html) {
+    load_document(domainConfig).then(function (html) {
       try {
         engine = authenticatedHtml;
         //console.log(authenticatedHtml.res);
@@ -199,9 +231,10 @@ function init (domainConfig) {
 
       var conf = {
         '$$'     : engine,
-        strategy : 'artoo',
+        //strategy : 'artoo',
+        strategy : 'cheerio',
         content  : __xmlString,
-        selector : 'ul > li',
+        selector : 'div.gallery > dl',
         params   : null
       };
 
@@ -282,13 +315,21 @@ function Spook (domainConfig, pageDataConfig) {
       console.log(log.message.replace(/ \- .*/, ''));
     }
   });
+
 }
 
 setup_domain().then(function (domainConfig) {
   init(domainConfig).then(function (capturedPageData) {
-    var pageDataConfig = capturedPageData.config;
-    console.dir(pageDataConfig);
-    Spook(domainConfig, pageDataConfig);
+    //console.dir(capturedPageData.scrape);
+    var outputFile = __dirname + '/tmp/' + domainConfig.outputName
+    var outputList = {
+      list: capturedPageData.scrape
+    };
+    jsonfile.writeFile(outputFile, outputList, {spaces: 2}, function (err) {
+      //console.error(err);
+    });
+    //var pageDataConfig = capturedPageData.config;
+    //Spook(domainConfig, pageDataConfig);
   });
 });
 
