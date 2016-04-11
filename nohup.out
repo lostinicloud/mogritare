@@ -4,3 +4,7 @@
 2015/12/31 11:44:45 It appears another Daemon is already running or a previous instance didn't shutdown properly, use -force to force start.
 2016/01/01 11:56:22 It appears another Daemon is already running or a previous instance didn't shutdown properly, use -force to force start.
 2016/02/10 07:24:38 Failed to create logger: open /Library/Timeglass/daemon.log: permission denied
+nohup: glass-daemon: No such file or directory
+nohup: glass-daemon: No such file or directory
+nohup: glass-daemon: No such file or directory
+nohup: glass-daemon: No such file or directory

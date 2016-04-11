@@ -1,0 +1,661 @@
+{
+  "list": [
+    {
+      "link": "Bitt: $16.0 million - Series A"
+    },
+    {
+      "link": "Stratumn: $0.7 million - Seed"
+    },
+    {
+      "link": "Rootstock: $1.0 million - Seed"
+    },
+    {
+      "link": "Elliptic: $5.0 million - Series A"
+    },
+    {
+      "link": "Chronicled: $3.42 million - Seed"
+    },
+    {
+      "link": "Ribbit.me: $1.5 million - Seed"
+    },
+    {
+      "link": "Chainalysis: $1.6 million - Seed"
+    },
+    {
+      "link": "SurBTC (Chile): $0.3 million - Series A"
+    },
+    {
+      "link": "Simplex: $7.0 million - Series A"
+    },
+    {
+      "link": "Blockstream: $55.0 million - Series A"
+    },
+    {
+      "link": "SatoshiPay: $0.39 million - Seed"
+    },
+    {
+      "link": "Digital Asset Holdings: $50.0 million - N/A"
+    },
+    {
+      "link": "Gem: $7.1 million - Series A"
+    },
+    {
+      "link": "Zebpay: $1.0 million - Series A"
+    },
+    {
+      "link": "Streami: $2.0 million - Seed"
+    },
+    {
+      "link": "BTCS: $1.45 million - N/A"
+    },
+    {
+      "link": "Purse.io: $1 million - Seed"
+    },
+    {
+      "link": "Bitwage: $0.76 million - Seed"
+    },
+    {
+      "link": "Align Commerce: $12.5 million - Series A"
+    },
+    {
+      "link": "Zapchain: $0.35 million - Seed"
+    },
+    {
+      "link": "Factom: $0.4 million - Seed"
+    },
+    {
+      "link": "ScoreChain: $0.57 million - Seed"
+    },
+    {
+      "link": "Orb: $2.3 million - Seed"
+    },
+    {
+      "link": "Coinplug: $5 million - Second"
+    },
+    {
+      "link": "Safe Cash Payment Technologies: $1.12 million - Seed"
+    },
+    {
+      "link": "Pey: $0.34 million - Seed"
+    },
+    {
+      "link": "Coinalytics: $1.1 million - Seed"
+    },
+    {
+      "link": "Abra: $12 million - First"
+    },
+    {
+      "link": "Case: $1 million - Seed"
+    },
+    {
+      "link": "Chain: $30 million - Second"
+    },
+    {
+      "link": "ShapeShift: $1.6 million - First"
+    },
+    {
+      "link": "Paymium: $1.12 million - Seed"
+    },
+    {
+      "link": "Filament: $5 million - First"
+    },
+    {
+      "link": "BitFlyer: $4 million - First"
+    },
+    {
+      "link": "Challenger Deep (Kaiko): $1.86 million - Seed"
+    },
+    {
+      "link": "BitX: $4 million - Second"
+    },
+    {
+      "link": "ShoCard: $1.5 million - Seed"
+    },
+    {
+      "link": "TabTrader: $0.1 million - Seed"
+    },
+    {
+      "link": "BitFury: $20 million - Third"
+    },
+    {
+      "link": "Ascribe: $2 million - Seed"
+    },
+    {
+      "link": "Vogogo: $12.5 million - Second"
+    },
+    {
+      "link": "Case: $1.25 million - Seed"
+    },
+    {
+      "link": "Reveal: $1.5 million - Seed"
+    },
+    {
+      "link": "OpenBazaar: $1 million - Seed"
+    },
+    {
+      "link": "Symbiont: $1.25 million - Seed"
+    },
+    {
+      "link": "Mirror: $8.8 million - First"
+    },
+    {
+      "link": "Bitbond: $0.67 million - Seed"
+    },
+    {
+      "link": "Ripple Labs: $32 million - First"
+    },
+    {
+      "link": "itBit: $25 million - First"
+    },
+    {
+      "link": "Cryex: $10 million - First"
+    },
+    {
+      "link": "Satoshi Citadel Industries Inc.: $0.1 million - Seed"
+    },
+    {
+      "link": "Hedgy: $1.2 million - Seed"
+    },
+    {
+      "link": "Circle Internet Financial: $50 million - Third"
+    },
+    {
+      "link": "Gem: $1.3 million - Second"
+    },
+    {
+      "link": "PeerNova: $5 million - First"
+    },
+    {
+      "link": "Bitt: $1.5 million - Seed"
+    },
+    {
+      "link": "TabTrader: $0.07 million - Seed"
+    },
+    {
+      "link": "Coinigy: $0.1 million - Seed"
+    },
+    {
+      "link": "21 Inc (21e6): $116 million - First"
+    },
+    {
+      "link": "ShapeShift: $0.53 million - Seed"
+    },
+    {
+      "link": "Simplex: $0.4 million - Grant"
+    },
+    {
+      "link": "Ledger: $1.5 million - Seed"
+    },
+    {
+      "link": "BitPesa: $1.1 million - Second"
+    },
+    {
+      "link": "HashRabbit: $0.5 million - Seed"
+    },
+    {
+      "link": "KnCMiner: $15 million - Second"
+    },
+    {
+      "link": "NeuCoin: $1.25 million - Seed"
+    },
+    {
+      "link": "Ziftr: $0.85 million - Seed"
+    },
+    {
+      "link": "Bonafide (Bonifide.io): $0.85 million - Seed"
+    },
+    {
+      "link": "BitFlyer: $1.1 million - Seed"
+    },
+    {
+      "link": "Colu: $2.5 million - Seed"
+    },
+    {
+      "link": "Anycoin Direct: $0.56 million - Seed"
+    },
+    {
+      "link": "Coinbase: $75 million - Third"
+    },
+    {
+      "link": "Trustatom: $0.1 million - Seed"
+    },
+    {
+      "link": "Ciphrex: $0.5 million - First"
+    },
+    {
+      "link": "BlockCypher: $3.1 million - Seed"
+    },
+    {
+      "link": "Airbitz: $0.03 million - Seed"
+    },
+    {
+      "link": "LibertyX: $0.4 million - Seed"
+    },
+    {
+      "link": "GetGems: $0.4 million - Seed"
+    },
+    {
+      "link": "CoinOutlet: $0.1 million - Seed"
+    },
+    {
+      "link": "Bitreserve (Uphold): $9.6 million - Second"
+    },
+    {
+      "link": "BitGold: $3.5 million - Third"
+    },
+    {
+      "link": "PeerNova: $8.6 million - First"
+    },
+    {
+      "link": "BitGold: $0.8 million - Seed"
+    },
+    {
+      "link": "ChangeTip: $3.5 million - First"
+    },
+    {
+      "link": "DigiByte_: $0.25 million - Seed"
+    },
+    {
+      "link": "GetGems: $0.6 million - Seed"
+    },
+    {
+      "link": "Purse.io: $0.3 million - Seed"
+    },
+    {
+      "link": "Blockstream: $21 million - First"
+    },
+    {
+      "link": "OneName: $1.5 million - Seed"
+    },
+    {
+      "link": "Dogetipbot: $0.45 million - Seed"
+    },
+    {
+      "link": "CoinOutlet: $0.05 million - Seed"
+    },
+    {
+      "link": "Spondoolies-Tech: $5 million - Second"
+    },
+    {
+      "link": "BitLendingClub: $0.25 million - Seed"
+    },
+    {
+      "link": "Bitnet: $14.5 million - First"
+    },
+    {
+      "link": "AlphaPoint: $1.35 million - Seed"
+    },
+    {
+      "link": "Coinsetter (now Kraken): $1.4 million - Second"
+    },
+    {
+      "link": "BitFlyer: $0.24 million - Seed"
+    },
+    {
+      "link": "Libra: $0.5 million - Seed"
+    },
+    {
+      "link": "Melotic: $1.18 million - Seed"
+    },
+    {
+      "link": "Swarm: $0.12 million - Seed"
+    },
+    {
+      "link": "Devign Lab: $0.2 million - Seed"
+    },
+    {
+      "link": "BitFury: $20 million - Second"
+    },
+    {
+      "link": "Coinplug: $2.5 million - First"
+    },
+    {
+      "link": "Ciphrex: $0.3 million - N/A"
+    },
+    {
+      "link": "Blockchain: $30.5 million - First"
+    },
+    {
+      "link": "SolidX: $3 million - First"
+    },
+    {
+      "link": "SNAPCARD: $1.5 million - Seed"
+    },
+    {
+      "link": "HashRabbit: $0.2 million - N/A"
+    },
+    {
+      "link": "Bonafide (Bonifide.io): $N/A million - Seed"
+    },
+    {
+      "link": "Coinapult: $0.78 million - Seed"
+    },
+    {
+      "link": "Coinify: $0.34 million - Seed"
+    },
+    {
+      "link": "CoinPlus: $0.22 million - Seed"
+    },
+    {
+      "link": "Koinify: $1 million - First"
+    },
+    {
+      "link": "Gem: $2 million - First"
+    },
+    {
+      "link": "BitGo: $N/A million - N/A"
+    },
+    {
+      "link": "KnCMiner: $14 million - First"
+    },
+    {
+      "link": "Korbit: $3 million - First"
+    },
+    {
+      "link": "Chain: $9.5 million - First"
+    },
+    {
+      "link": "Chain: $4.2 million - Seed"
+    },
+    {
+      "link": "BitX: $0.82 million - Seed"
+    },
+    {
+      "link": "BlockTrail: $0.65 million - Seed"
+    },
+    {
+      "link": "Bitbond: $0.27 million - Seed"
+    },
+    {
+      "link": "Unocoin: $0.25 million - Seed"
+    },
+    {
+      "link": "Vogogo: $8.5 million - First"
+    },
+    {
+      "link": "Volabit: $0.75 million - Seed"
+    },
+    {
+      "link": "BitFlyer: $1.6 million - Seed"
+    },
+    {
+      "link": "OneName: $0.12 million - Seed"
+    },
+    {
+      "link": "Elliptic: $2 million - Seed"
+    },
+    {
+      "link": "TradeBlock: $2.8 million - Seed"
+    },
+    {
+      "link": "BitGold: $1 million - Seed"
+    },
+    {
+      "link": "Safello: $0.25 million - Seed"
+    },
+    {
+      "link": "Xapo: $20 million - First"
+    },
+    {
+      "link": "Expresscoin: $0.15 million - Seed"
+    },
+    {
+      "link": "BlockScore: $2 million - Seed"
+    },
+    {
+      "link": "BitPagos: $0.6 million - Seed"
+    },
+    {
+      "link": "BitGo: $12 million - First"
+    },
+    {
+      "link": "HashPlex: $0.4 million - Seed"
+    },
+    {
+      "link": "Coinfloor: $0.2 million - N/A"
+    },
+    {
+      "link": "BlockScore: $0.03 million - Seed"
+    },
+    {
+      "link": "BitFury: $20 million - First"
+    },
+    {
+      "link": "Bitex.la: $2 million - First"
+    },
+    {
+      "link": "Simplex: $1.0 million - Seed"
+    },
+    {
+      "link": "Huobi: $10 million - First"
+    },
+    {
+      "link": "BitPay: $30 million - First"
+    },
+    {
+      "link": "Mirror: $4 million - Seed"
+    },
+    {
+      "link": "Vaurum (Mirror): $4 million - Seed"
+    },
+    {
+      "link": "ChangeTip: $0.75 million - Seed"
+    },
+    {
+      "link": "GogoCoin: $0.1 million - Seed"
+    },
+    {
+      "link": "Bonafide (Bonifide.io): $0.1 million - Seed"
+    },
+    {
+      "link": "Coinalytics: $0.1 million - Seed"
+    },
+    {
+      "link": "Neuroware: $0.1 million - Seed"
+    },
+    {
+      "link": "Monetsu: $0.1 million - Seed"
+    },
+    {
+      "link": "ChangeTip: $N/A million - Seed"
+    },
+    {
+      "link": "Coinplug: $0.4 million - Seed"
+    },
+    {
+      "link": "PayStand: $1 million - Seed"
+    },
+    {
+      "link": "BTC.sx (Magnr): $0.3 million - Seed"
+    },
+    {
+      "link": "Bitreserve (Uphold): $5 million - First"
+    },
+    {
+      "link": "GoCoin: $1.5 million - First"
+    },
+    {
+      "link": "Circle Internet Financial: $17 million - Second"
+    },
+    {
+      "link": "Hive: $0.19 million - Seed"
+    },
+    {
+      "link": "Payward, Inc. (Kraken): $5 million - First"
+    },
+    {
+      "link": "Koinify: $0.45 million - Seed"
+    },
+    {
+      "link": "Exchange of the Americas (meXBT): $0.34 million - Seed"
+    },
+    {
+      "link": "OKCoin: $10 million - First"
+    },
+    {
+      "link": "Xapo: $20 million - First"
+    },
+    {
+      "link": "Tembusu: $0.24 million - Seed"
+    },
+    {
+      "link": "CoinSimple: $0.18 million - Seed"
+    },
+    {
+      "link": "Expresscoin: $N/A million - Seed"
+    },
+    {
+      "link": "Coinsetter (now Kraken): $0.5 million - First"
+    },
+    {
+      "link": "Safello: $0.6 million - Seed"
+    },
+    {
+      "link": "Elliptic: $N/A million - Seed"
+    },
+    {
+      "link": "BitSim: $0.5 million - Seed"
+    },
+    {
+      "link": "Cryptopay: $0.08 million - Seed"
+    },
+    {
+      "link": "Spondoolies-Tech: $1.5 million - Bridge"
+    },
+    {
+      "link": "Gliph: $0.03 million - Seed"
+    },
+    {
+      "link": "Tangible Cryptography (BitSimple): $0.6 million - Seed"
+    },
+    {
+      "link": "Korbit: $0.4 million - Seed"
+    },
+    {
+      "link": "Exchange of the Americas (meXBT): $0.15 million - Seed"
+    },
+    {
+      "link": "Bitex.la: $2 million - Seed"
+    },
+    {
+      "link": "Bitnet: $N/A million - Seed"
+    },
+    {
+      "link": "COINFIRMA: $0.5 million - Seed"
+    },
+    {
+      "link": "Payward, Inc. (Kraken): $1.5 million - Seed"
+    },
+    {
+      "link": "Gliph: $0.13 million - Seed"
+    },
+    {
+      "link": "Coinbase: $25 million - Second"
+    },
+    {
+      "link": "CoinJar Pty: $0.5 million - First"
+    },
+    {
+      "link": "SNAPCARD: $0.06 million - N/A"
+    },
+    {
+      "link": "Bex.io / Spawngrid: $0.5 million - Seed"
+    },
+    {
+      "link": "Coinplug: $0.4 million - Seed"
+    },
+    {
+      "link": "BTC China (Shanghai Satuxi Network): $5 million - First"
+    },
+    {
+      "link": "21 Inc (21e6): $5.05 million - First"
+    },
+    {
+      "link": "Ripple Labs: $3.5 million - Seed"
+    },
+    {
+      "link": "itBit: $3.25 million - First"
+    },
+    {
+      "link": "GoCoin: $0.55 million - Seed"
+    },
+    {
+      "link": "Bitstamp: $10 million - First"
+    },
+    {
+      "link": "Circle Internet Financial: $9 million - First"
+    },
+    {
+      "link": "GogoCoin: $0.11 million - Seed"
+    },
+    {
+      "link": "GogoCoin: $0.01 million - Seed"
+    },
+    {
+      "link": "Gliph: $0.2 million - Seed"
+    },
+    {
+      "link": "Coinfloor: $0.1 million - Seed"
+    },
+    {
+      "link": "OKCoin: $1 million - Seed"
+    },
+    {
+      "link": "Vaurum (Mirror): $2 million - First"
+    },
+    {
+      "link": "BitPagos: $0.03 million - Seed"
+    },
+    {
+      "link": "Buttercoin: $1.25 million - First"
+    },
+    {
+      "link": "Armory Technologies: $0.6 million - Seed"
+    },
+    {
+      "link": "Digital Currencies FinTech: $1.25 million - First"
+    },
+    {
+      "link": "Spondoolies-Tech: $4 million - First"
+    },
+    {
+      "link": "Avalon Clones: $3 million - First"
+    },
+    {
+      "link": "Gliph: $0.02 million - Seed"
+    },
+    {
+      "link": "BitPay: $2 million - Seed"
+    },
+    {
+      "link": "Ripple Labs: $3 million - Bridge"
+    },
+    {
+      "link": "CoinJar Pty: $0.02 million - Seed"
+    },
+    {
+      "link": "Coinbase: $6.11 million - First"
+    },
+    {
+      "link": "Ripple Labs: $2.5 million - Bridge"
+    },
+    {
+      "link": "TradeHill: $0.4 million - Seed"
+    },
+    {
+      "link": "BitGo: $2 million - Seed"
+    },
+    {
+      "link": "BitPay: $0.51 million - Seed"
+    },
+    {
+      "link": "Bitinstant: $1.5 million - First"
+    },
+    {
+      "link": "Coinbase: $0.6 million - Seed"
+    },
+    {
+      "link": "Gliph: $0.03 million - Seed"
+    }
+  ]
+}

@@ -30,7 +30,8 @@ try {
 var params = null;
 var _xmlString = '<ul><li>h';
 //var domainConfigPath = './domains.json';
-var domainConfigPath = './domains.webstersauction.com';
+//var domainConfigPath = './domains.webstersauction.com';
+var domainConfigPath = './domains.linkedin.com';
 
 // =======================================================  Implements Interface
 function load_authenticated_document (domainConfig, mode) {
@@ -185,12 +186,12 @@ function scrape_document (config) {
     //data = $(_config.selector).scrape(_config.params);
     data = $(_config.selector);
     data.each(function (i, element) {
-      var href = $(element).find('a').attr('href');
-      var _orientation = $(element).find('dt').attr('class');
-      var orientation = _orientation.split(' ');
+      var href = $(element).find('h3').text().trim();
+      //var _orientation = $(element).find('dt').attr('class');
+      //var orientation = _orientation.split(' ');
       var auctionItem = {
-        link: href,
-        orientation: orientation[1]
+        link: href
+        //orientation: orientation[1]
       };
       r.push(auctionItem);
     });
@@ -240,7 +241,8 @@ function init (domainConfig) {
         //strategy : 'artoo',
         strategy : 'cheerio',
         content  : __xmlString,
-        selector : 'div.gallery > dl',
+        //selector : 'div.gallery > dl',
+        selector : '.company-list',
         params   : null
       };
 
